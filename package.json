@@ -1,0 +1,20 @@
+{
+  "name": "kii-runbox",
+  "version": "1.0.0",
+  "engines": [
+    "node >=0.10.11"
+  ],
+  "dependencies": {
+    "commander": ">= 1.2.0",
+    "express": ">= 3.4.4",
+    "open": ">= 0.0.3"
+  },
+  "keywords": [
+    "kii",
+    "command",    
+    "servercode"
+  ],
+  "bin": {
+    "kii-runbox": "./bin/kii-runbox.js"
+  }
+}
