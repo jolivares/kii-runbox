@@ -9,14 +9,22 @@ function execute() {
 
   ctx.getAppID = function() { return APP_ID }
   ctx.getAppKey = function() { return APP_KEY }
-  ctx.getAccessToken = function() { return ACCESS_TOKEN }
+  ctx.getAccessToken = function() { return ACCESS_TOKEN } 
 
-  console.log('>>> Execution STARTED')
-
-  ENDPOINT(PARAMS, ctx, done);
-  setTimeout(function() { 
-    console.log('>>> Execution FINISHED')
-    }, EXECUTION_TIMEOUT);
+  if(ENDPOINT.length == 2) { // sync
+    console.log('>>> Synchronous Execution STARTED');
+    ENDPOINT(PARAMS, ctx);
+    console.log('>>> Synchronous Execution FINISHED');
+  } else if(ENDPOINT.length == 3) { // async
+    console.log('>>> Asynchronous Execution STARTED');
+    ENDPOINT(PARAMS, ctx, done);
+    setTimeout(function() { 
+      console.log('>>> Asynchronous Execution FINISHED');
+      }, EXECUTION_TIMEOUT);
+  } else { // bad definition
+    console.error("Bad endpoint definition. Found "
+      + ENDPOINT.length + " parameters.");
+  }
 }
 
 function done(response) {
